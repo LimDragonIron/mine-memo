@@ -10,7 +10,6 @@ export default auth (async function middleware(request) {
     
     // Get the session
     const isLoggedIn = !!request.auth;
-    console.log(pathname)
     
     if(!isLoggedIn && pathname !== '/auth/signin'){
       return NextResponse.redirect(new URL('/auth/signin', url))
