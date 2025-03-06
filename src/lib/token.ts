@@ -69,7 +69,7 @@ export async function updateOauthToken(token: JWT) {
       return token;
     } catch (error) {
       console.error(error);
-      token.error = 'SessionExpired'; 
+      token.error = 'RefreshTokenError'; 
       return token;
     }
   }

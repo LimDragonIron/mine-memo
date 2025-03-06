@@ -30,8 +30,17 @@ export const {handlers,
                 token.refresh_token = account.refresh_token as string;
                 token.access_token = account.access_token!;
                 token.expires_at = account.expires_at!;
+                return token;
+            }else if(Date.now() < token.expires_at * 1000)  {
+               return token;
+            }else {
+                // Need Update Token
+                const newToken = await updateOauthToken(token);
+                token.refresh_token = newToken.refresh_token;
+                token.access_token = newToken.access_token;
+                token.expires_at = newToken.expires_at;
+                return token;
             }
-            return token;
         },
         session: async ({session, token}) => {
             if(token.expires_at && Date.now() > 1000 / Number(token.expires_at)) {
