@@ -1,19 +1,22 @@
 import Link from 'next/link'
-import { getSession, signOutWithForm } from "@/serverAction/auth"
+import { getSession, signOutWithForm } from '@/serverAction/auth'
+import { UserButton } from './UserButton'
+import BreadcrumbHeader from './BreadcrumbHeader'
+import { ModeToggle } from './ThememodeToggle'
 
 export default async function Header() {
   const session = await getSession()
   return (
-    <header className="bg-gray-800 p-4">
-      {session?.user && <div className="text-white text-center mb-2">{session.user.name}</div>}
-      <nav className="flex justify-center gap-4 md:gap-6 lg:gap-8">
-        <Link href="/" className="text-white hover:text-gray-400">메인</Link>
+    <header className="flex items-center justify-between px-6 py-4 h-[50px] container">
+      <BreadcrumbHeader />
+      <nav className="gap-2 flex items-center">
+        <ModeToggle />
         {session?.user ? (
-          <form action={signOutWithForm}>
-            <button type="submit" className="text-white hover:text-gray-400">로그아웃</button>
-          </form>
+          <UserButton />
         ) : (
-          <Link href="/auth/signin" className="text-white hover:text-gray-400">로그인</Link>
+          <Link href="/auth/signin" className="dark:text-white text-black hover:text-gray-400">
+            로그인
+          </Link>
         )}
       </nav>
     </header>

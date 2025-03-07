@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const WorkSpacePage = () => {
-    return (
-        <div>
-            Work
-        </div>
-    );
+  return <div>Work</div>
 }
 
-export default WorkSpacePage;
+export default WorkSpacePage

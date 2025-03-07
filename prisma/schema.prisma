@@ -8,10 +8,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+//   directUrl = env("DIRECT_URL")
+// }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 enum Role {
@@ -59,7 +64,8 @@ model User {
   roles         Role    @default(FREE)
   accounts      Account[]
   sessions      Session[]
- 
+  mindMaps      MindMap[]
+  
   @@map("users")
 }
  
@@ -70,4 +76,47 @@ model VerificationToken {
  
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+model MindMap {
+  id        String @id @default(cuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nodes     Node[]
+  userId             String  @map("user_id")
+  
+  @@map("mind_maps")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Node {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  mindMapId String    @map("mind_map_id")
+  mindMap   MindMap   @relation(fields: [mindMapId], references: [id], onDelete: Cascade)
+  tags      NodeTag[]
+  
+  @@map("nodes")
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  nodes     NodeTag[]
+  
+  @@map("tags")
+}
+
+// Junction table for many-to-many relation between Node and Tag
+model NodeTag {
+  nodeId String
+  node   Node @relation(fields: [nodeId], references: [id])
+  tagId  String
+  tag    Tag  @relation(fields: [tagId], references: [id])
+  
+  @@id([nodeId, tagId])
+  @@map("node_tags")
 }
