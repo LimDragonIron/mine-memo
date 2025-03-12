@@ -10,10 +10,15 @@ import {
   MenuIcon,
   ShieldCheckIcon,
 } from 'lucide-react'
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 import { Button, buttonVariants } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
 import Logo from '@/components/Logo'
 // import UserAvailableCreditsBadge from '@/components/user-available-credits-badge';
 
@@ -88,9 +93,7 @@ export function MobileSidebar() {
       <nav className="container flex items-center justify-between px-8">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <VisuallyHidden>
-            <SheetTitle>
-              Menu
-            </SheetTitle>
+            <SheetTitle>Menu</SheetTitle>
           </VisuallyHidden>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">

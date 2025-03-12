@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { usePathname } from 'next/navigation';
+import React from 'react'
+import { usePathname } from 'next/navigation'
 
 import {
   Breadcrumb,
@@ -9,12 +9,12 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import { MobileSidebar } from '@/components/Sidebar';
+} from '@/components/ui/breadcrumb'
+import { MobileSidebar } from '@/components/Sidebar'
 
 export default function BreadcrumbHeader() {
-  const pathname = usePathname();
-  const paths = pathname === '/' ? [''] : pathname.split('/');
+  const pathname = usePathname()
+  const paths = pathname === '/' ? [''] : pathname.split('/')
 
   return (
     <div className="flex items-center flex-start">
@@ -34,5 +34,5 @@ export default function BreadcrumbHeader() {
         </BreadcrumbList>
       </Breadcrumb>
     </div>
-  );
+  )
 }

@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { signInWithGoogle } from '@/serverAction/auth'
+import { signInWithGoogle } from '@/actions/auth'
 import React from 'react'
 import { FcGoogle } from 'react-icons/fc'
 

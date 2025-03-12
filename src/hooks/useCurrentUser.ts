@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
 
 export const useCurrentUser = () => {
-  const { data: session } = useSession();
-  const [user, setUser] = useState(session?.user);
+  const { data: session } = useSession()
+  const [user, setUser] = useState(session?.user)
 
   useEffect(() => {
     if (session) {
-      setUser(session.user);
+      setUser(session.user)
     }
-  }, [session]);
+  }, [session])
 
-  return user;
-};
+  return user
+}

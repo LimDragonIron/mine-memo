@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getSession, signOutWithForm } from '@/serverAction/auth'
+import { getSession, signOutWithForm } from '@/actions/auth'
 import { UserButton } from './UserButton'
 import BreadcrumbHeader from './BreadcrumbHeader'
 import { ModeToggle } from './ThememodeToggle'
@@ -14,7 +14,10 @@ export default async function Header() {
         {session?.user ? (
           <UserButton />
         ) : (
-          <Link href="/auth/signin" className="dark:text-white text-black hover:text-gray-400">
+          <Link
+            href="/auth/signin"
+            className="dark:text-white text-black hover:text-gray-400"
+          >
             로그인
           </Link>
         )}

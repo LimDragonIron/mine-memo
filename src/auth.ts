@@ -26,7 +26,7 @@ export const {
       return false
     },
     jwt: async ({ token, account, user }) => {
-      if(user){
+      if (user) {
         token.id = user.id!
       }
       if (account) {

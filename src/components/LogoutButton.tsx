@@ -1,21 +1,19 @@
-"use client";
+'use client'
 
-import { signOutWithForm } from "@/serverAction/auth"
+import { signOutWithForm } from '@/actions/auth'
 
 interface LogoutButtonProps {
-  children?: React.ReactNode;
-};
+  children?: React.ReactNode
+}
 
-export const LogoutButton = ({
-  children
-}: LogoutButtonProps) => {
-  const onClick =  async () => {
-    await signOutWithForm();
-  };
+export const LogoutButton = ({ children }: LogoutButtonProps) => {
+  const onClick = async () => {
+    await signOutWithForm()
+  }
 
   return (
     <span onClick={onClick} className="cursor-pointer">
       {children}
     </span>
-  );
-};
+  )
+}
