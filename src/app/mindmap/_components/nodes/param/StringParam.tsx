@@ -31,7 +31,7 @@ export default function StringParam({ param, value, updateNodeParamValue, disabl
         id={id}
         disabled={disabled}
         className="text-xs "
-        value={internalValue}
+        value={internalValue || ""}
         placeholder="Enter value here"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInternalValue(e.target.value)}
         onBlur={(e: React.FocusEvent<HTMLInputElement, Element>) => updateNodeParamValue(e.target.value)}
