@@ -6,35 +6,34 @@ import { toast } from 'sonner'
 import { CheckIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { updateMindMap } from '@/actions/mindmaps/UpdateMindMap'
 
-// import { updateWorkflow } from '@/actions/workflows/update-workflow';
-
-export default function SaveBtn({ workflowId }: { workflowId: string }) {
+export default function SaveBtn({ mindmapId }: { mindmapId: string }) {
   const { toObject } = useReactFlow()
 
-  //   const saveMutation = useMutation({
-  //     mutationFn: updateWorkflow,
-  //     onSuccess: () => {
-  //       toast.success('Workflow saved successfully', { id: 'save-workflow' });
-  //     },
-  //     onError: () => {
-  //       toast.error('Something went wrong!', { id: 'save-workflow' });
-  //     },
-  //   });
+  const saveMutation = useMutation({
+    mutationFn: updateMindMap,
+    onSuccess: () => {
+      toast.success('Mindmap saved successfully', { id: 'save-mindmap' })
+    },
+    onError: () => {
+      toast.error('Something went wrong!', { id: 'save-mindmap' })
+    },
+  })
 
   return (
     <Button
-      //   disabled={saveMutation.isPending}
+      disabled={saveMutation.isPending}
       variant="outline"
       className="flex items-center gap-2"
-      //   onClick={() => {
-      //     const workflowDefinition = JSON.stringify(toObject());
-      //     toast.loading('Saving workflow...', { id: 'save-workflow' });
-      //     saveMutation.mutate({
-      //       id: workflowId,
-      //       definition: workflowDefinition,
-      //     });
-      //   }}
+      onClick={() => {
+        const mindmapDefinition = JSON.stringify(toObject())
+        toast.loading('Saving Mindmap...', { id: 'save-mindmap' })
+        saveMutation.mutate({
+          id: mindmapId,
+          definition: mindmapDefinition,
+        })
+      }}
     >
       <CheckIcon size={16} className="stroke-green-400" />
       Save

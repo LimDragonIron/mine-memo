@@ -47,16 +47,14 @@ export default function Topbar({
           )}
         </div>
       </div>
-      {/* <NavigationTabs workflowId={workflowId} /> */}
       <div className="flex gap-1 flex-1 justify-end">
         {hideButtons === false && (
           <>
-            {/* <ExecuteBtn workflowId={workflowId} /> */}
             {isPublished && <UnpublishBtn mindmapId={mindmapId} />}
             {!isPublished && (
               <>
-                <SaveBtn workflowId={mindmapId} />
-                <PublishBtn workflowId={mindmapId} />
+                <SaveBtn mindmapId={mindmapId} />
+                <PublishBtn mindmapId={mindmapId} />
               </>
             )}
           </>

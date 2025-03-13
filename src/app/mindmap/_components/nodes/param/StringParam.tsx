@@ -1,24 +1,29 @@
-'use client';
+'use client'
 
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react'
 
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 
-import { ParamProps } from '@/types/appnode';
+import { ParamProps } from '@/types/appnode'
 
-export default function StringParam({ param, value, updateNodeParamValue, disabled }: ParamProps) {
-  const [internalValue, setInternalValue] = useState(value);
-  const id = useId();
+export default function StringParam({
+  param,
+  value,
+  updateNodeParamValue,
+  disabled,
+}: ParamProps) {
+  const [internalValue, setInternalValue] = useState(value)
+  const id = useId()
 
   useEffect(() => {
-    setInternalValue(value);
-  }, [value]);
+    setInternalValue(value)
+  }, [value])
 
-  let Component: any = Input;
+  let Component: any = Input
   if (param.variant === 'textarea') {
-    Component = Textarea;
+    Component = Textarea
   }
 
   return (
@@ -31,12 +36,18 @@ export default function StringParam({ param, value, updateNodeParamValue, disabl
         id={id}
         disabled={disabled}
         className="text-xs "
-        value={internalValue || ""}
+        value={internalValue || ''}
         placeholder="Enter value here"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInternalValue(e.target.value)}
-        onBlur={(e: React.FocusEvent<HTMLInputElement, Element>) => updateNodeParamValue(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setInternalValue(e.target.value)
+        }
+        onBlur={(e: React.FocusEvent<HTMLInputElement, Element>) =>
+          updateNodeParamValue(e.target.value)
+        }
       />
-      {param.helperText && <p className="text-muted-foreground px-2">{param.helperText}</p>}
+      {param.helperText && (
+        <p className="text-muted-foreground px-2">{param.helperText}</p>
+      )}
     </div>
-  );
+  )
 }

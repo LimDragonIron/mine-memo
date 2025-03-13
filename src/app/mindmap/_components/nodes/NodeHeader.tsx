@@ -1,6 +1,6 @@
 'use client'
 
-import { useReactFlow } from '@xyflow/react'
+import { Handle, Position, useReactFlow } from '@xyflow/react'
 import { CopyIcon, GripVerticalIcon, TrashIcon } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -23,6 +23,12 @@ export default function NodeHeader({
 
   return (
     <div className="flex items-center gap-2 p-2">
+      {task.type == TaskType.ROOT_NODE ? (
+        ''
+      ) : (
+        <Handle type="target" position={Position.Top} className="!w-4 !h-4" />
+      )}
+
       <task.icon size={16} />
       <div className="flex justify-between items-center w-full">
         <p className="text-xs font-bold uppercase text-muted-foreground">

@@ -1,16 +1,26 @@
-'use client';
+'use client'
 
-import { BaseEdge, EdgeLabelRenderer, EdgeProps, getSmoothStepPath, useReactFlow } from '@xyflow/react';
+import {
+  BaseEdge,
+  EdgeLabelRenderer,
+  EdgeProps,
+  getSmoothStepPath,
+  useReactFlow,
+} from '@xyflow/react'
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
 
 export default function DeletableEdge(props: EdgeProps) {
-  const [edgePath, labelX, labelY] = getSmoothStepPath(props);
-  const { setEdges } = useReactFlow();
+  const [edgePath, labelX, labelY] = getSmoothStepPath(props)
+  const { setEdges } = useReactFlow()
 
   return (
     <>
-      <BaseEdge path={edgePath} markerEnd={props.markerEnd} style={props.style} />
+      <BaseEdge
+        path={edgePath}
+        markerEnd={props.markerEnd}
+        style={props.style}
+      />
       <EdgeLabelRenderer>
         <div
           style={{
@@ -24,7 +34,7 @@ export default function DeletableEdge(props: EdgeProps) {
             size="icon"
             className="w-5 h-5 border cursor-pointer rounded-full text-xs leading-none hover:shadow-lg"
             onClick={() => {
-              setEdges((edges) => edges.filter((edge) => edge.id !== props.id));
+              setEdges((edges) => edges.filter((edge) => edge.id !== props.id))
             }}
           >
             x
@@ -32,5 +42,5 @@ export default function DeletableEdge(props: EdgeProps) {
         </div>
       </EdgeLabelRenderer>
     </>
-  );
+  )
 }

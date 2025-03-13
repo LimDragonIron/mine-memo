@@ -5,7 +5,7 @@ import { JSX, RefAttributes } from 'react'
 
 export const RootNodeTask = {
   type: TaskType.ROOT_NODE,
-  label: 'Root Mind',
+  label: 'Root',
   icon: (
     props: JSX.IntrinsicAttributes &
       Omit<LucideProps, 'ref'> &

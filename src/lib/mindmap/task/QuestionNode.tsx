@@ -5,7 +5,7 @@ import { JSX, RefAttributes } from 'react'
 
 export const QuestionTask = {
   type: TaskType.QUESTION_NODE,
-  label: 'Question Element',
+  label: 'Question',
   isEntryPoint: false,
   icon: (
     props: JSX.IntrinsicAttributes &
@@ -14,12 +14,12 @@ export const QuestionTask = {
   ) => <CircleHelpIcon className="stroke-orange-400" {...props} />,
   inputs: [
     {
-      name: '질문',
+      name: 'question',
       type: TaskParamType.STRING,
       required: true,
     },
     {
-      name: '내용',
+      name: 'context',
       type: TaskParamType.RICH_TEXT,
       required: true,
     },

@@ -13,10 +13,10 @@ import { TaskType } from '@/types/task'
 
 export default function TaskMenu() {
   return (
-    <aside className="w-[340px] min-w-[340px] max-w-[340px] border-r-2 border-separate h-full p-2 px-4 overflow-auto">
+    <aside className="md:w-[340px] md:min-w-[340px] md:max-w-[340px] border-r-2 border-separate h-full p-2 px-4 overflow-auto sm:w-[170px] sm:min-w-[180px] sm:max-w-[170px]">
       <Accordion type="multiple" className="w-full" defaultValue={['nodes']}>
         <AccordionItem value="nodes">
-          <AccordionTrigger className="font-bold">Mind Nodes</AccordionTrigger>
+          <AccordionTrigger className="font-bold">Nodes</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.ROOT_NODE} />
             <TaskMenuBtn taskType={TaskType.QUESTION_NODE} />

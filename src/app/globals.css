@@ -131,7 +131,6 @@ body,
   }
 }
 
-
 .react-flow__devtools {
   --border-radius: 4px;
   --highlight-color: rgba(238, 58, 115, 1);
@@ -197,7 +196,6 @@ body,
 .react-flow__devtools-nodeinfo {
   top: 5px;
 }
-
 
 /* @utility container {
   margin-left: auto;

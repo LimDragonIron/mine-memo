@@ -94,8 +94,14 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
   )
 }
 
-function MindMapActions({ mindMapId, mindMapName }: { mindMapName: string; mindMapId: string }) {
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+function MindMapActions({
+  mindMapId,
+  mindMapName,
+}: {
+  mindMapName: string
+  mindMapId: string
+}) {
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
   return (
     <>
@@ -121,7 +127,7 @@ function MindMapActions({ mindMapId, mindMapName }: { mindMapName: string; mindM
           <DropdownMenuItem
             className="text-destructive flex items-center gap-2"
             onSelect={() => {
-              setShowDeleteDialog((prev) => !prev);
+              setShowDeleteDialog((prev) => !prev)
             }}
           >
             <TrashIcon size={16} />
@@ -130,5 +136,5 @@ function MindMapActions({ mindMapId, mindMapName }: { mindMapName: string; mindM
         </DropdownMenuContent>
       </DropdownMenu>
     </>
-  );
+  )
 }
