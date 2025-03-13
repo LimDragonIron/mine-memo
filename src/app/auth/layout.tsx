@@ -1,15 +1,13 @@
-import React from 'react';
+import React from 'react'
 
 export interface AuthLayoutProps {
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
-const AuthLayout = ({children}:AuthLayoutProps) => {
-    return (
-        <div className='h-full flex items-center justify-center'>
-            {children}
-        </div>
-    );
+const AuthLayout = ({ children }: AuthLayoutProps) => {
+  return (
+    <div className="h-full flex items-center justify-center">{children}</div>
+  )
 }
 
-export default AuthLayout;
+export default AuthLayout
