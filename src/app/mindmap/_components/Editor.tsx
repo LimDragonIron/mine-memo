@@ -18,7 +18,7 @@ export default function Editor({ mindmap }: { mindmap: MindMap }) {
       <ReactFlowProvider>
         <div className="flex flex-col h-full w-full overflow-hidden">
           <Topbar
-            title="MindMap editor"
+            title="MindMap Editor"
             subtitle={mindmap.name}
             mindmapId={mindmap.id}
             isPublished={mindmap.status === MindMapStatus.PUBLISHED}

@@ -153,7 +153,7 @@ export default function MindMapEditor({ mindmap }: { mindmap: MindMap }) {
         <Controls position="top-left" fitViewOptions={fitViewOptions} />
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         <Map />
-        {/* <DevTools /> */}
+        <DevTools />
       </ReactFlow>
     </main>
   )
