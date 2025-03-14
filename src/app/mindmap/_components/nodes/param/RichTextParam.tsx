@@ -1,9 +1,5 @@
 'use client'
 
-import { useId } from 'react'
-
-import { Label } from '@/components/ui/label'
-
 import { ParamProps } from '@/types/appnode'
 import ContextDialog from '../../ContextDialog'
 
@@ -12,8 +8,8 @@ export default function RichTextParam({
   value,
   updateNodeParamValue,
   disabled,
+  nearParam,
 }: ParamProps) {
-  const id = useId()
   return (
     <div className="space-y-1 p-1 w-full">
       <div className="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50">
@@ -23,6 +19,7 @@ export default function RichTextParam({
       <ContextDialog
         param={param}
         value={value}
+        nearParam={nearParam}
         updateNodeParamValue={updateNodeParamValue}
         disabled={disabled}
       />

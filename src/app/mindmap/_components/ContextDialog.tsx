@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,7 @@ export default function ContextDialog({
   param,
   value,
   updateNodeParamValue,
+  nearParam,
   disabled,
 }: ParamProps) {
   const [editorContent, setEditorContent] = useState(value)
@@ -65,7 +66,7 @@ export default function ContextDialog({
         )}
       </DialogTrigger>
       <DialogContent className="min-w-[800px] h-[600px] overflow-hidden">
-        <DialogTitle>Title</DialogTitle>
+        <DialogTitle>{nearParam}</DialogTitle>
         <VisuallyHidden>
           <DialogDescription></DialogDescription>
         </VisuallyHidden>

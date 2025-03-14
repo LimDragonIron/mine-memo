@@ -21,6 +21,7 @@ export default function NodeParamField({
   const { updateNodeData, getNode } = useReactFlow()
   const node = getNode(nodeId) as AppNode
   const value = node?.data.inputs?.[param.name]
+  const nearValue = node?.data.inputs?.['question']
 
   const updateNodeParamValue = useCallback(
     (newValue: string) => {
@@ -49,6 +50,7 @@ export default function NodeParamField({
         <RichTextParam
           param={param}
           value={value}
+          nearParam={nearValue}
           updateNodeParamValue={updateNodeParamValue}
           disabled={disabled}
         />
