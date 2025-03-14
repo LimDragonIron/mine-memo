@@ -51,7 +51,9 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
             {isDraft ? (
               <FileTextIcon className="h-5 w-5" />
             ) : (
-              <PlayIcon className="h-5 w-5 text-white" />
+              <Link href={`/mindgame/${mindmap.id}`}>
+                <PlayIcon className="h-5 w-5 text-white" />
+              </Link>
             )}
           </div>
           <div>
