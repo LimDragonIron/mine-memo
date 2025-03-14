@@ -7,6 +7,7 @@ import { TaskParam, TaskParamType } from '@/types/task'
 import { AppNode } from '@/types/appnode'
 
 import StringParam from '@/app/mindmap/_components/nodes/param/StringParam'
+import RichTextParam from '@/app/mindmap/_components/nodes/param/RichTextParam'
 
 export default function NodeParamField({
   param,
@@ -20,6 +21,7 @@ export default function NodeParamField({
   const { updateNodeData, getNode } = useReactFlow()
   const node = getNode(nodeId) as AppNode
   const value = node?.data.inputs?.[param.name]
+  const nearValue = node?.data.inputs?.['question']
 
   const updateNodeParamValue = useCallback(
     (newValue: string) => {
@@ -45,9 +47,13 @@ export default function NodeParamField({
       )
     case TaskParamType.RICH_TEXT:
       return (
-        <div className="w-fit">
-          <p>TODO - RICH TEXT PARAM</p>
-        </div>
+        <RichTextParam
+          param={param}
+          value={value}
+          nearParam={nearValue}
+          updateNodeParamValue={updateNodeParamValue}
+          disabled={disabled}
+        />
       )
     default:
       return (

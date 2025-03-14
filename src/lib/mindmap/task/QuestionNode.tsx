@@ -19,7 +19,7 @@ export const QuestionTask = {
       required: true,
     },
     {
-      name: 'context',
+      name: 'answer',
       type: TaskParamType.RICH_TEXT,
       required: true,
     },
