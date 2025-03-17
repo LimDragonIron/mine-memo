@@ -30,7 +30,7 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
 
   useEffect(() => {
     setShowDescription(false)
-    setTimer(30)
+    setTimer(2)
 
     const timerInterval = setInterval(() => {
       setTimer((prev) => {
@@ -95,7 +95,7 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
                     className="text-gray-700 overflow-y-auto max-h-48 w-full justify-center flex"
                   >
                     <div
-                      className="w-full"
+                      className="w-full ql-editor"
                       dangerouslySetInnerHTML={{ __html: cards[page].answer }}
                     />
                   </motion.div>

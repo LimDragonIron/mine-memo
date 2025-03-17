@@ -2,16 +2,12 @@
 
 import { MindMap } from '@prisma/client'
 import { ReactFlowProvider } from '@xyflow/react'
-
-// import TaskMenu from '@/app/workflow/_components/task-menu';
-
 import { MindMapStatus } from '@/types/mindmap'
 import MindMapEditor from './MindMapEditor'
 import Topbar from './topbar/TopBar'
 import { FlowValidationContextProvider } from '@/components/context/FlowValidationContext'
 import TaskMenu from './TaskMenu'
 
-// export default function Editor({ workflow }: { workflow: Workflow }) {
 export default function Editor({ mindmap }: { mindmap: MindMap }) {
   return (
     <FlowValidationContextProvider>

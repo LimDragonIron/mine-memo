@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 import AppProviders from '@/components/providers/AppProvider'
 import { Toaster } from '@/components/ui/sonner'
+import 'react-quill-new/dist/quill.snow.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

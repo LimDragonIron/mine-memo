@@ -11,7 +11,6 @@ import {
 import { Button } from '@/components/ui/button'
 
 import dynamic from 'next/dynamic'
-import 'react-quill-new/dist/quill.snow.css'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { ParamProps } from '@/types/appnode'
 

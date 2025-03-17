@@ -24,7 +24,7 @@ import '@xyflow/react/dist/style.css'
 import { createMindNode } from '@/lib/mindmap/CreateMindNode'
 import { TaskType } from '@/types/task'
 import { AppNode } from '@/types/appnode'
-import { TaskRegistry } from '@/lib/mindmap/task/Registry'
+
 import DevTools from './Devtools'
 
 const nodeTypes = {
