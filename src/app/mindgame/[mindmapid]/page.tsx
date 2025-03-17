@@ -5,9 +5,9 @@ import Game from '../_components/Game'
 export default async function GamePage({
   params,
 }: {
-  params: { mindmapId: string }
+  params: { mindmapid: string }
 }) {
-  const { mindmapId } = await params
+  const { mindmapid } = await params
 
   const auth = await getSession()
 
@@ -19,7 +19,7 @@ export default async function GamePage({
 
   const mindmap = await prisma.mindMap.findFirst({
     where: {
-      id: mindmapId,
+      id: mindmapid,
       userId: id,
     },
   })

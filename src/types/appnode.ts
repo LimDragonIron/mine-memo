@@ -24,3 +24,45 @@ export type AppNodeMissingInputs = {
   nodeId: string
   inputs: string[]
 }
+
+export type NodeType = 'ROOT_NODE' | 'QUESTION_NODE'
+
+export interface MindMapNode {
+  id: string
+  type: 'MindMapNode'
+  dragHandle: string
+  data: {
+    type: NodeType
+    inputs: any
+  }
+  position: {
+    x: number
+    y: number
+  }
+  measured: {
+    width: number
+    height: number
+  }
+  selected: boolean
+  dragging: boolean
+}
+
+export interface MindMap {
+  nodes: MindMapNode[]
+  edges: any[]
+  viewport: {
+    x: number
+    y: number
+    zoom: number
+  }
+}
+
+export interface ClassifiedNodes {
+  ROOT_NODE: MindMapNode[]
+  QUESTION_NODE: MindMapNode[]
+}
+
+export interface QuestionAnswer {
+  question: string
+  answer: string
+}

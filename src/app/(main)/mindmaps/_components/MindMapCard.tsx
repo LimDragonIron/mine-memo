@@ -52,7 +52,7 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
               <FileTextIcon className="h-5 w-5" />
             ) : (
               <Link href={`/mindgame/${mindmap.id}`}>
-                <PlayIcon className="h-5 w-5 text-white" />
+                <PlayIcon className="h-5 w-5 text-white dark:text-black" />
               </Link>
             )}
           </div>
@@ -76,6 +76,23 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
           </div>
         </div>
         <div className="flex items-center space-x-2">
+          {isDraft ? (
+            ''
+          ) : (
+            <Link
+              href={`/mindgame/${mindmap.id}`}
+              className={cn(
+                buttonVariants({
+                  variant: 'outline',
+                  size: 'sm',
+                }),
+                'flex items-center gap-2'
+              )}
+            >
+              <PlayIcon size={16} />
+              Play
+            </Link>
+          )}
           <Link
             href={`/mindmap/editor/${mindmap.id}`}
             className={cn(
