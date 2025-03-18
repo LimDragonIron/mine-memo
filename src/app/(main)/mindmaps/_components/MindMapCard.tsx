@@ -31,15 +31,16 @@ import { MindMapStatus } from '@/types/mindmap'
 import DeleteWorkflowDialog from '@/app/(main)/mindmaps/_components/DeleteMindMapDialog'
 
 const statusColors = {
-  [MindMapStatus.DRAFT]: 'bg-yellow-400 text-yellow-600',
-  [MindMapStatus.PUBLISHED]: 'bg-primary',
+  [MindMapStatus.DRAFT]:
+    'bg-yellow-400 text-yellow-600 dark:bg-yellow-600 dark:text-yellow-800',
+  [MindMapStatus.PUBLISHED]: 'bg-primary dark:bg-primary-dark',
 }
 
 export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
   const isDraft = mindmap.status === MindMapStatus.DRAFT
 
   return (
-    <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card">
+    <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card bg-white dark:bg-gray-800">
       <CardContent className="p-4 flex items-center justify-between h-[100px]">
         <div className="flex items-center just space-x-3">
           <div
@@ -49,7 +50,7 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
             )}
           >
             {isDraft ? (
-              <FileTextIcon className="h-5 w-5" />
+              <FileTextIcon className="h-5 w-5 text-black dark:text-white" />
             ) : (
               <Link href={`/mindgame/${mindmap.id}`}>
                 <PlayIcon className="h-5 w-5 text-white dark:text-black" />
@@ -61,13 +62,13 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
               <TooltipWrapper content={mindmap.description}>
                 <Link
                   href={`/mindmap/editor/${mindmap.id}`}
-                  className="flex items-center hover:underline"
+                  className="flex items-center hover:underline text-black dark:text-white"
                 >
                   {mindmap.name}
                 </Link>
               </TooltipWrapper>
               {isDraft && (
-                <span className="ml-2 px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
+                <span className="ml-2 px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 rounded-full">
                   Draft
                 </span>
               )}
@@ -86,7 +87,7 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
                   variant: 'outline',
                   size: 'sm',
                 }),
-                'flex items-center gap-2'
+                'flex items-center gap-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white'
               )}
             >
               <PlayIcon size={16} />
@@ -100,7 +101,7 @@ export default function WorkflowCard({ mindmap }: { mindmap: MindMap }) {
                 variant: 'outline',
                 size: 'sm',
               }),
-              'flex items-center gap-2'
+              'flex items-center gap-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white'
             )}
           >
             <ShuffleIcon size={16} />
@@ -140,7 +141,10 @@ function MindMapActions({
             </TooltipWrapper>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent
+          align="end"
+          className="bg-white dark:bg-gray-800 text-black dark:text-white"
+        >
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem

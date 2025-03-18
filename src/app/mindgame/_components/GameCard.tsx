@@ -52,7 +52,7 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
   }
 
   return (
-    <div className="flex w-full h-full items-start justify-center">
+    <div className="flex w-full h-full items-start justify-center bg-gray-900 text-white">
       <div className="flex flex-col gap-3 h-full w-full md:w-1/2 justify-center items-center">
         <div className="flex w-full h-2/3 overflow-hidden relative">
           <AnimatePresence initial={false} custom={direction}>
@@ -80,11 +80,11 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
               }}
               className="absolute w-full h-full p-4"
             >
-              <div className="relative w-full bg-white p-5 rounded-lg shadow-md h-full flex flex-col items-center justify-center">
+              <div className="relative w-full bg-gray-800 p-5 rounded-lg shadow-md h-full flex flex-col items-center justify-center">
                 <h2 className="text-xl font-bold mb-2">
                   {cards[page].question}
                 </h2>
-                <div className="absolute top-5 right-5 bg-gray-200 text-gray-800 rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                <div className="absolute top-5 right-5 bg-gray-700 text-gray-300 rounded-full p-2 w-10 h-10 flex items-center justify-center">
                   {timer}
                 </div>
                 {showDescription ? (
@@ -92,7 +92,7 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="text-gray-700 overflow-y-auto max-h-48 w-full justify-center flex"
+                    className="text-gray-300 overflow-y-auto max-h-48 w-full justify-center flex"
                   >
                     <div
                       className="w-full ql-editor"
@@ -108,13 +108,13 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
         </div>
         <div className="flex justify-between w-full px-4 items-center">
           <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-800"
             onClick={() => paginate(-1)}
           >
             Previous
           </button>
           <button
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-800"
             onClick={() => paginate(1)}
           >
             Next
