@@ -30,7 +30,7 @@ const CardList: React.FC<CardListProps> = ({ cards }) => {
 
   useEffect(() => {
     setShowDescription(false)
-    setTimer(2)
+    setTimer(30)
 
     const timerInterval = setInterval(() => {
       setTimer((prev) => {
