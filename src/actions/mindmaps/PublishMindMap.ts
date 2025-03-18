@@ -72,7 +72,12 @@ function mindmapVaildator(mindMapString: string): boolean {
       question: node.data.inputs.question || '',
       answer: node.data.inputs.answer || '',
     }))
+  
 
+  if(questionAnswers.length == 0){
+    return false
+  }
+  
   const result = validateQuestionAnswers(questionAnswers)
 
   return result
