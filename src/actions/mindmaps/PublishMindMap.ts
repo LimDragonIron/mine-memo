@@ -5,13 +5,14 @@ import { revalidatePath } from 'next/cache'
 import prisma from '@/lib/prisma'
 import { MindMapStatus } from '@/types/mindmap'
 import { getSession } from '../auth'
+import { MindMap, QuestionAnswer } from '@/types/appnode'
 
 export async function publishMindMap({
   id,
-  flowDefinition,
+  mindMapDefinition,
 }: {
   id: string
-  flowDefinition: string
+  mindMapDefinition: string
 }) {
   const session = await getSession()
 
@@ -29,20 +30,61 @@ export async function publishMindMap({
   })
 
   if (!mindMap) {
-    throw new Error('workflow not found')
+    throw new Error('mindmap not found')
   }
 
   if (mindMap.status !== MindMapStatus.DRAFT) {
-    throw new Error('workflow is not a draft')
+    throw new Error('mindmap is not a draft')
   }
 
-  await prisma.mindMap.update({
-    where: { id, userId },
-    data: {
-      definition: flowDefinition,
-      status: MindMapStatus.PUBLISHED,
-    },
-  })
+  if (!mindmapVaildator(mindMapDefinition)) {
+    throw new Error('Please fill in all the contents of the mind map.')
+  }
 
-  revalidatePath(`/workflow/editor/${id}`)
+  try {
+    await prisma.mindMap.update({
+      where: { id, userId },
+      data: {
+        definition: mindMapDefinition,
+        status: MindMapStatus.PUBLISHED,
+      },
+    })
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+
+  revalidatePath(`/mindmap/editor/${id}`)
+}
+
+function mindmapVaildator(mindMapString: string): boolean {
+  let mindMap: MindMap
+  try {
+    mindMap = JSON.parse(mindMapString)
+  } catch (error) {
+    console.error('Invalid JSON string:', error)
+    return false
+  }
+
+  const questionAnswers: QuestionAnswer[] = mindMap.nodes
+    .filter((node) => node.data.type === 'QUESTION_NODE')
+    .map((node) => ({
+      question: node.data.inputs.question || '',
+      answer: node.data.inputs.answer || '',
+    }))
+
+  const result = validateQuestionAnswers(questionAnswers)
+
+  return result
+}
+
+function validateQuestionAnswers(
+  questionsAndAnswers: QuestionAnswer[]
+): boolean {
+  for (const qa of questionsAndAnswers) {
+    if (!qa.question || !qa.answer) {
+      return false
+    }
+  }
+  return true
 }

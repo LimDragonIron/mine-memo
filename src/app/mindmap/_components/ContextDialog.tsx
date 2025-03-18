@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -26,9 +26,34 @@ export default function ContextDialog({
 }: ParamProps) {
   const [editorContent, setEditorContent] = useState(value)
   const [isOpen, setIsOpen] = useState(false)
+  const fontSizeArr = [
+    '8px',
+    '9px',
+    '10px',
+    '12px',
+    '14px',
+    '16px',
+    '20px',
+    '24px',
+    '32px',
+    '42px',
+    '54px',
+    '68px',
+    '84px',
+    '98px',
+  ]
 
   const toolbarOptions = [
-    [{ header: '1' }, { header: '2' }, { font: [] }],
+    [
+      { header: '1' },
+      { header: '2' },
+      { header: '3' },
+      { header: '4' },
+      { header: '5' },
+      { header: '6' },
+      { font: [] },
+    ],
+    [{ size: fontSizeArr }],
     [{ list: 'ordered' }, { list: 'bullet' }],
     ['bold', 'italic', 'underline'],
     [{ color: [] }, { background: [] }],
@@ -40,6 +65,20 @@ export default function ContextDialog({
   const modules = {
     toolbar: toolbarOptions,
   }
+
+  useEffect(() => {
+    // Quill을 동적으로 로드합니다.
+    const loadQuill = async () => {
+      const { Quill } = await import('react-quill-new')
+
+      // Quill 모듈을 커스터마이징하는 예제
+      const Size = Quill.import('attributors/style/size') as any
+      Size.whitelist = fontSizeArr
+      Quill.register(Size, true)
+    }
+
+    loadQuill()
+  }, [])
 
   const handleEditorChange = (content: any) => {
     setEditorContent(content)

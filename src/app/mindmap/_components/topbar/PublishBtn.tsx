@@ -16,8 +16,8 @@ export default function PublishBtn({ mindmapId }: { mindmapId: string }) {
     onSuccess: () => {
       toast.success('Mindmap published', { id: mindmapId })
     },
-    onError: () => {
-      toast.error('Something went wrong!', { id: mindmapId })
+    onError: (error) => {
+      toast.error(error.message, { id: mindmapId })
     },
   })
 
@@ -30,7 +30,7 @@ export default function PublishBtn({ mindmapId }: { mindmapId: string }) {
         toast.loading('Publishing Mindmap...', { id: mindmapId })
         mutation.mutate({
           id: mindmapId,
-          flowDefinition: JSON.stringify(toObject()),
+          mindMapDefinition: JSON.stringify(toObject()),
         })
       }}
     >
