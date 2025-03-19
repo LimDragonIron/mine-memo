@@ -36,7 +36,7 @@ export default function DeleteWorkflowDialog({
   const deleteMutation = useMutation({
     mutationFn: deleteMindMap,
     onSuccess: () => {
-      toast.success('Workflow deleted successfully', { id: mindMapId })
+      toast.success('MindMap deleted successfully', { id: mindMapId })
       setConfirmText('')
     },
     onError: () => {
@@ -68,9 +68,9 @@ export default function DeleteWorkflowDialog({
           </AlertDialogCancel>
           <AlertDialogAction
             disabled={confirmText !== mindMapName || deleteMutation.isPending}
-            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            className="bg-destructive text-white hover:bg-destructive/90"
             onClick={() => {
-              toast.loading('Deleting workflow...', { id: mindMapId })
+              toast.loading('Deleting mindmap...', { id: mindMapId })
               deleteMutation.mutate(mindMapId)
             }}
           >

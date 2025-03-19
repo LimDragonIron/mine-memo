@@ -197,12 +197,39 @@ body,
   top: 5px;
 }
 
-/* @utility container {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem;
-  
-  @media (min-width: 1400px) {
-    max-width: 1400px;
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='1']::before {
+  content: '32px' !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='2']::before {
+  content: '24px' !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='3']::before {
+  content: '18px' !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='4']::before {
+  content: '14px' !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='5']::before {
+  content: '10px' !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='6']::before {
+  content: '8px' !important;
+}
+
+.ql-snow {
+  .ql-picker {
+    &.ql-size {
+      .ql-picker-label,
+      .ql-picker-item {
+        &::before {
+          content: attr(data-value) !important;
+        }
+      }
+    }
   }
-} */
+}

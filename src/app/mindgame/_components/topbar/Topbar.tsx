@@ -5,9 +5,6 @@ import { ChevronLeftIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import TooltipWrapper from '@/components/TooltipWrapper'
-import SaveBtn from '@/app/mindmap/_components/topbar/SaveBtn'
-import UnpublishBtn from './UnPublishBtn'
-import PublishBtn from './PublishBtn'
 
 interface Props {
   title: string
@@ -17,13 +14,7 @@ interface Props {
   isPublished?: boolean
 }
 
-export default function Topbar({
-  title,
-  subtitle,
-  mindmapId,
-  hideButtons = false,
-  isPublished = false,
-}: Props) {
+export default function Topbar({ title, subtitle, mindmapId }: Props) {
   const router = useRouter()
 
   return (
@@ -42,19 +33,6 @@ export default function Topbar({
             </p>
           )}
         </div>
-      </div>
-      <div className="flex gap-1 flex-1 justify-end">
-        {hideButtons === false && (
-          <>
-            {isPublished && <UnpublishBtn mindmapId={mindmapId} />}
-            {!isPublished && (
-              <>
-                <SaveBtn mindmapId={mindmapId} />
-                <PublishBtn mindmapId={mindmapId} />
-              </>
-            )}
-          </>
-        )}
       </div>
     </header>
   )

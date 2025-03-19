@@ -14,10 +14,10 @@ export default function PublishBtn({ mindmapId }: { mindmapId: string }) {
   const mutation = useMutation({
     mutationFn: publishMindMap,
     onSuccess: () => {
-      toast.success('Workflow published', { id: mindmapId })
+      toast.success('Mindmap published', { id: mindmapId })
     },
-    onError: () => {
-      toast.error('Something went wrong!', { id: mindmapId })
+    onError: (error) => {
+      toast.error(error.message, { id: mindmapId })
     },
   })
 
@@ -27,10 +27,10 @@ export default function PublishBtn({ mindmapId }: { mindmapId: string }) {
       className="flex items-center gap-2"
       disabled={mutation.isPending}
       onClick={() => {
-        toast.loading('Publishing workflow...', { id: mindmapId })
+        toast.loading('Publishing Mindmap...', { id: mindmapId })
         mutation.mutate({
           id: mindmapId,
-          flowDefinition: JSON.stringify(toObject()),
+          mindMapDefinition: JSON.stringify(toObject()),
         })
       }}
     >

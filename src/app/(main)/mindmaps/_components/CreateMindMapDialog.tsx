@@ -23,6 +23,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { createMindMapSchema, createMindMapSchemaType } from '@/schema/mindmaps'
 import { createMindMap } from '@/actions/mindmaps/CreateMindMap'
 import CustomDialogHeader from '@/components/CustomDialogHeader'
+import { useRouter } from 'next/navigation'
 
 export default function CreateMindMapialog({
   triggerText,
@@ -30,6 +31,7 @@ export default function CreateMindMapialog({
   triggerText?: string
 }) {
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
   const form = useForm<createMindMapSchemaType>({
     resolver: zodResolver(createMindMapSchema),
     defaultValues: {
@@ -40,10 +42,12 @@ export default function CreateMindMapialog({
 
   const { mutate, isPending } = useMutation({
     mutationFn: createMindMap,
-    onSuccess: () => {
+    onSuccess: (result) => {
       toast.success('Mindmap created successfully', { id: 'create-mindmap' })
+      router.push(`/mindmap/editor/${result.id}`)
     },
-    onError: () => {
+    onError: (error) => {
+      console.log(error)
       toast.error('Failed to create mindmap', { id: 'create-mindmap' })
     },
   })

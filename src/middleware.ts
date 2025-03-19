@@ -25,5 +25,5 @@ export default auth(async function middleware(request) {
 })
 
 export const config = {
-  matcher: ['/mindmaps/:path*', '/auth/signin'],
+  matcher: ['/mindmaps/:path*', '/mindgame/:path*', '/auth/signin'],
 }

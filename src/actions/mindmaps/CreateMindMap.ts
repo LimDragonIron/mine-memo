@@ -30,19 +30,23 @@ export async function createMindMap(from: createMindMapSchemaType) {
 
   //Lets add the root node
   initialFlow.nodes.push(createMindNode(TaskType.ROOT_NODE))
+  try {
+    const result = await prisma.mindMap.create({
+      data: {
+        userId: session.user.id!,
+        status: MindMapStatus.DRAFT,
+        definition: JSON.stringify(initialFlow),
+        ...data,
+      },
+    })
 
-  const result = await prisma.mindMap.create({
-    data: {
-      userId: session.user.id!,
-      status: MindMapStatus.DRAFT,
-      definition: JSON.stringify(initialFlow),
-      ...data,
-    },
-  })
+    if (!result) {
+      throw new Error('Failed to create mindmap from Server')
+    }
 
-  if (!result) {
-    throw new Error('Failed to create workflow')
+    return result
+  } catch (error) {
+    console.log(error)
+    throw error
   }
-
-  redirect(`/mindmap/editor/${result.id}`)
 }

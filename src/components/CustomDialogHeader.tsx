@@ -2,10 +2,15 @@
 
 import { LucideIcon } from 'lucide-react'
 
-import { DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import {
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 
 import { cn } from '@/lib/utils'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 interface Props {
   title?: string
@@ -45,6 +50,9 @@ export default function CustomDialogHeader(props: Props) {
           )}
         </div>
       </DialogTitle>
+      <VisuallyHidden>
+        <DialogDescription></DialogDescription>
+      </VisuallyHidden>
       <Separator />
     </DialogHeader>
   )

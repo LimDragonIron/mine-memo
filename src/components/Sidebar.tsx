@@ -33,16 +33,16 @@ const routes = [
     label: 'Mindmaps',
     icon: Layers2Icon,
   },
-  {
-    href: 'credentials',
-    label: 'Credentials',
-    icon: ShieldCheckIcon,
-  },
-  {
-    href: 'billing',
-    label: 'Billing',
-    icon: CoinsIcon,
-  },
+  // {
+  //   href: 'credentials',
+  //   label: 'Credentials',
+  //   icon: ShieldCheckIcon,
+  // },
+  // {
+  //   href: 'billing',
+  //   label: 'Billing',
+  //   icon: CoinsIcon,
+  // },
 ]
 
 export function DesktopSidebar() {

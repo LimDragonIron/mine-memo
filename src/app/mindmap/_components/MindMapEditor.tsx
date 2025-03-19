@@ -24,7 +24,7 @@ import '@xyflow/react/dist/style.css'
 import { createMindNode } from '@/lib/mindmap/CreateMindNode'
 import { TaskType } from '@/types/task'
 import { AppNode } from '@/types/appnode'
-import { TaskRegistry } from '@/lib/mindmap/task/Registry'
+
 import DevTools from './Devtools'
 
 const nodeTypes = {
@@ -149,11 +149,16 @@ export default function MindMapEditor({ mindmap }: { mindmap: MindMap }) {
         onConnect={onConnect}
         isValidConnection={isValidConnection}
         proOptions={proOptions}
+        className=" dark:bg-black bg-white"
       >
-        <Controls position="top-left" fitViewOptions={fitViewOptions} />
+        <Controls
+          position="top-left"
+          fitViewOptions={fitViewOptions}
+          className=" dark:bg-black  dark:text-black"
+        />
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-        <Map />
-        <DevTools />
+        {/* <Map />
+        <DevTools /> */}
       </ReactFlow>
     </main>
   )
