@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -15,7 +15,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { ParamProps } from '@/types/appnode'
 
 // Dynamically import ReactQuill to prevent SSR issues
-const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
+const ReactQuill = dynamic(async() => await import('react-quill-new'), { ssr: false })
 
 export default function ContextDialog({
   param,
@@ -26,21 +26,16 @@ export default function ContextDialog({
 }: ParamProps) {
   const [editorContent, setEditorContent] = useState(value)
   const [isOpen, setIsOpen] = useState(false)
+  const quillRef = useRef<any>(null)
   const fontSizeArr = [
     '8px',
-    '9px',
     '10px',
-    '12px',
     '14px',
-    '16px',
-    '20px',
+    '18px',
     '24px',
     '32px',
-    '42px',
-    '54px',
-    '68px',
-    '84px',
-    '98px',
+    '40px',
+    '50px',
   ]
 
   const toolbarOptions = [
@@ -62,22 +57,53 @@ export default function ContextDialog({
     ['clean'],
   ]
 
-  const modules = {
+const modules = useMemo(() => {
+  return {
     toolbar: toolbarOptions,
+    keyboard: {
+      bindings: {
+        'header enter': {
+          key: 'Enter',
+          format: ['header', 'size', 'color'],
+          handler(range: { index: number }, context: any) {
+            const editor = quillRef.current?.getEditor();
+            if (!editor) return true;
+            const currentFormats = editor.getFormat(range.index);
+            editor.insertText(range.index, '\n', currentFormats, 'user');
+            editor.setSelection(range.index + 1);
+            editor.formatText(range.index + 1, 1, currentFormats);
+            return false;
+          },
+        },
+        'default enter': {
+          key: 'Enter',
+          handler(range: { index: number }, context: any) {
+            const editor = quillRef.current?.getEditor();
+            if (!editor) return false;
+            const currentFormats = editor.getFormat(range.index);
+            editor.insertText(range.index, '\n', 'user');
+            editor.setSelection(range.index + 1);
+            editor.formatText(range.index + 1, 1, currentFormats);
+            return true;
+          },
+        },
+      },
+    }
   }
+}, [quillRef])
 
   useEffect(() => {
     // Quill을 동적으로 로드합니다.
     const loadQuill = async () => {
       const { Quill } = await import('react-quill-new')
-
       // Quill 모듈을 커스터마이징하는 예제
       const Size = Quill.import('attributors/style/size') as any
       Size.whitelist = fontSizeArr
       Quill.register(Size, true)
     }
-
-    loadQuill()
+    if (typeof window !== 'undefined') {
+      loadQuill()
+    }
   }, [])
 
   const handleEditorChange = (content: any) => {
@@ -109,6 +135,8 @@ export default function ContextDialog({
           <DialogDescription></DialogDescription>
         </VisuallyHidden>
         <ReactQuill
+          // @ts-ignore
+          ref={quillRef}
           className="w-full h-[300px]"
           theme="snow"
           value={editorContent || ''}

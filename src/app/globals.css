@@ -198,6 +198,14 @@ body,
 }
 
 .ql-snow .ql-picker.ql-header .ql-picker-item[data-value='1']::before {
+  content: '50px' !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='1']::before {
+  content: '40px' !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item[data-value='1']::before {
   content: '32px' !important;
 }
 
